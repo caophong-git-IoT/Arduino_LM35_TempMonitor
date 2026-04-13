@@ -1,12 +1,8 @@
 /*
  * Du an: Doc nhiet do LM35 va gui qua Serial
  * Mon: Mang Cam Bien - Tuan 03
- * Version: 3 kenh (A0, A1, A2)
+ * Version: 3 kenh (A0, A1, A2) - Dinh dang JSON
  */
-
-int adcValues[3];
-float nhietDo[3];
-char chuoi[50];
 
 void setup() {
   Serial.begin(9600);
@@ -14,17 +10,26 @@ void setup() {
 }
 
 void loop() {
-  adcValues[0] = analogRead(A0);
-  nhietDo[0] = (adcValues[0] * 500.0) / 1023.0;
-  
-  adcValues[1] = analogRead(A1);
-  nhietDo[1] = (adcValues[1] * 500.0) / 1023.0;
-  
-  adcValues[2] = analogRead(A2);
-  nhietDo[2] = (adcValues[2] * 500.0) / 1023.0;
-  
-  sprintf(chuoi, "%d,%d,%d\n", (int)nhietDo[0], (int)nhietDo[1], (int)nhietDo[2]);
-  Serial.print(chuoi);
-  
-  delay(100);
+  // Doc 3 cam bien (cua SV A)
+  int adcValue1 = analogRead(A0);
+  int adcValue2 = analogRead(A1);
+  int adcValue3 = analogRead(A2);
+
+  float temp1 = (adcValue1 * 500.0) / 1023.0;
+  float temp2 = (adcValue2 * 500.0) / 1023.0;
+  float temp3 = (adcValue3 * 500.0) / 1023.0;
+
+  // Xuat JSON (cua SV B) - 3 cam bien
+  Serial.print("{");
+  Serial.print("\"temp1\":");
+  Serial.print(temp1);
+  Serial.print(",");
+  Serial.print("\"temp2\":");
+  Serial.print(temp2);
+  Serial.print(",");
+  Serial.print("\"temp3\":");
+  Serial.print(temp3);
+  Serial.println("}");
+
+  delay(1000);
 }
