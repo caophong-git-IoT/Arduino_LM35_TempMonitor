@@ -73,3 +73,11 @@ code README.md
 git add README.md
 git commit -m "docs: cap nhat README day du"
 git push origin main
+---
+
+## 👤 Tác giả
+
+**Cao Phong**  
+🌐 Portfolio: https://caophong-git-IoT.github.io  
+💻 GitHub: https://github.com/caophong-git-IoT  
+📧 Email: caophong2025@gmail.com5
